@@ -17,13 +17,13 @@ def default_staticfiles_dir():
 
 
 class Command(BaseCommand):
-    
+
     help = (
         "Copies the base require.js file into your STATICFILES_DIRS.\n\n"
         "Also copies default implementations of any build profiles listed in the REQUIRE_BUILD_PROFILE "
         "and REQUIRE_STANDALONE_MODULES settings."
     )
-    
+
     option_list = BaseCommand.option_list + (
         make_option(
             "-f",
@@ -31,19 +31,19 @@ class Command(BaseCommand):
             action = "store_true",
             dest = "force",
             default = False,
-            help = "Overwrite existing files if found.", 
+            help = "Overwrite existing files if found.",
         ),
         make_option(
             "-d",
             "--dir",
             action = "store",
             dest = "dir",
-            help = "Copy files into the named directory. Defaults to the first item in your STATICFILES_DIRS setting.", 
+            help = "Copy files into the named directory. Defaults to the first item in your STATICFILES_DIRS setting.",
         ),
     )
-    
+
     requires_model_validation = False
-    
+
     def handle(self, **options):
         verbosity = int(options.get("verbosity", 1))
         # Calculate the destination dir.
